@@ -78,7 +78,7 @@ section{position:relative;overflow:hidden}
 /* 1. первый экран */
 #hero{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(ellipse 62% 58% at 50% 50%,rgba(251,239,210,.82) 0,rgba(251,239,210,.55) 55%,rgba(251,239,210,.12) 100%),var(--im-hero-bg) center 40%/cover no-repeat}
 #hero h1{font-size:clamp(40px,6.2vw,104px);max-width:1180px}
-#hero .sub{font-size:clamp(17px,1.7vw,24px);color:var(--soft);margin-bottom:34px}
+#hero .sub{font-size:clamp(17px,1.7vw,24px);color:var(--ink);margin-bottom:34px}
 .hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px}
 .rating{display:inline-flex;align-items:center;gap:22px;padding:18px 40px 18px 44px;border-radius:999px;border:1px solid rgba(200,150,31,.28);background:rgba(255,255,255,.3)}
 .rating .stars{color:#e0a22a;font-size:26px;letter-spacing:6px}
@@ -110,6 +110,9 @@ section{position:relative;overflow:hidden}
 .qcard h3{font-size:clamp(20px,1.9vw,28px)}
 .qcard p{margin-top:12px;color:var(--soft);font-size:15px;max-width:240px}
 .qcard .art{display:none}
+.qcard:before{content:"";position:absolute;left:0;right:0;top:0;height:48%;background:linear-gradient(180deg,#fbefd2 0%,#fbefd2 58%,rgba(251,239,210,0) 100%);pointer-events:none}
+.qcard .n,.qcard .gl,.qcard h3,.qcard p{position:relative;z-index:1}
+.qcard p{color:var(--ink)}
 .a0{background-image:var(--im-card-0)}.a1{background-image:var(--im-card-1)}.a2{background-image:var(--im-card-2)}
 .qcard .ring{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);width:52px;height:52px;border-radius:50%;border:2px solid var(--green);background:rgba(255,255,255,.4);display:grid;place-items:center;color:#fff;font-size:24px}
 #quiz:has(#q0:checked) .a0,#quiz:has(#q1:checked) .a1,#quiz:has(#q2:checked) .a2{border-color:var(--green)}
@@ -212,6 +215,8 @@ footer small{flex-basis:100%;opacity:.7;font-size:13px}
 .fld{display:block;margin-bottom:14px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
 .fld input,.fld select{display:block;width:100%;margin-top:6px;padding:14px 18px;border-radius:16px;border:1px solid var(--line);background:#fffdf6;font:inherit;font-size:16px;color:var(--ink);letter-spacing:0;text-transform:none}
 .sheet .btn{margin-top:8px}
+.demo-note{color:var(--soft);font-size:14px;margin:-22px 0 30px}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:8px}
 
 @media (max-width:900px){
   nav{display:none}
@@ -258,8 +263,10 @@ footer small{flex-basis:100%;opacity:.7;font-size:13px}
 
 <!-- 1. Первый экран -->
 <section id="hero" class="screen">
-  <h1>Кофе, который хочется запомнить</h1>
+  <h1>Ваш кофе за&nbsp;1&nbsp;вопрос</h1>
   <span class="goldline"></span>
+  <p class="sub">Эфиопия и Бразилия, три вкуса. Обжариваем за 3 дня до отправки. От 690&nbsp;₽ за 250&nbsp;г.</p>
+  <a class="btn solid" href="#quiz">Подобрать мой кофе <span class="arr">→</span></a>
 </section>
 
 <!-- 2–3. Подбор кофе -->
@@ -295,8 +302,8 @@ footer small{flex-basis:100%;opacity:.7;font-size:13px}
         <p class="lead">Яркий кофе с нотами ягод, цитруса и цветов и чистой кислотностью.</p>
         <span class="mini">Вкусовой профиль</span>
         <div class="chips"><span class="chip">Ягоды</span><span class="chip">Цитрус</span><span class="chip">Цветы</span></div>
-        <span class="gram">250 г</span>
-        <div class="rb"><a class="btn solid" href="#eth">Посмотреть кофе <span class="arr">→</span></a><label class="again" for="s1">Выбрать другой вкус</label></div>
+        <span class="gram">250&nbsp;г · 890&nbsp;₽</span>
+        <div class="rb"><a class="btn solid" href="#eth">Смотреть Эфиопию <span class="arr">→</span></a><label class="again" for="s1">Выбрать другой вкус</label></div>
       </div>
     </div>
     <!-- сладкий -->
@@ -308,8 +315,8 @@ footer small{flex-basis:100%;opacity:.7;font-size:13px}
         <p class="lead">Мягкий и сладкий кофе с нотами шоколада и ореха и деликатным балансом.</p>
         <span class="mini">Вкусовой профиль</span>
         <div class="chips"><span class="chip">Шоколад</span><span class="chip">Орехи</span><span class="chip">Карамель</span></div>
-        <span class="gram">250 г</span>
-        <div class="rb"><a class="btn solid" href="#bra">Посмотреть кофе <span class="arr">→</span></a><label class="again" for="s1">Выбрать другой вкус</label></div>
+        <span class="gram">250&nbsp;г · 690&nbsp;₽</span>
+        <div class="rb"><a class="btn solid" href="#bra">Смотреть Бразилию <span class="arr">→</span></a><label class="again" for="s1">Выбрать другой вкус</label></div>
       </div>
     </div>
     <!-- глубокий -->
@@ -322,10 +329,20 @@ footer small{flex-basis:100%;opacity:.7;font-size:13px}
         <p class="lead">Насыщенный кофе тёмной обжарки с глубоким вкусом какао, тёмного шоколада и специй.</p>
         <span class="mini">Вкусовой профиль</span>
         <div class="chips"><span class="chip">Какао</span><span class="chip">Тёмный шоколад</span><span class="chip">Специи</span></div>
-        <span class="gram">250 г · 500 г · 1 кг</span>
-        <div class="rb"><a class="btn solid" href="#dark">Посмотреть кофе <span class="arr">→</span></a><label class="again" for="s1">Выбрать другой вкус</label></div>
+        <span class="gram">250&nbsp;г · 690&nbsp;₽</span>
+        <div class="rb"><a class="btn solid" href="#dark">Смотреть тёмную обжарку <span class="arr">→</span></a><label class="again" for="s1">Выбрать другой вкус</label></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- Доставка -->
+<section id="delivery" class="block">
+  <h2 class="title">Три шага от выбора до посылки</h2>
+  <div class="steps">
+    <div class="step"><em>1</em><h3>Выберите кофе</h3><p>Пройдите подбор вкуса или сразу выберите Эфиопию или Бразилию.</p></div>
+    <div class="step"><em>2</em><h3>Выберите фасовку</h3><p>Нажмите «Познакомиться» у нужного кофе и выберите фасовку и количество упаковок.</p></div>
+    <div class="step"><em>3</em><h3>Получите посылку</h3><p>Обжариваем за 3 дня до отправки и привозим за 2-4 дня. Это учебный концепт: заказы не принимаются.</p></div>
   </div>
 </section>
 
@@ -333,15 +350,14 @@ footer small{flex-basis:100%;opacity:.7;font-size:13px}
 <section id="coffee">
   <div id="bra" class="screen prod">
     <div class="txt">
-      <span class="eyebrow">Бразилия ———</span>
-      <h2>Нежность. Сладость. Баланс.</h2>
+      <h2>Бразилия: шоколад и орех</h2>
       <p>Бразилия — кофе, с которого приятно начинать день. Мягкий, сбалансированный вкус с нотами шоколада и ореха и деликатной сладостью.</p>
       <span class="cap">Вкусовой профиль</span>
       <div class="chips"><span class="chip">Шоколад</span><span class="chip">Орехи</span><span class="chip">Карамель</span></div>
       <span class="cap">Идеально для ———</span>
       <div class="ideal"><span>Эспрессо</span><span>Капучино</span><span>Утреннего кофе</span></div>
       <span class="cap">Фасовка</span>
-      <div class="chips vols"><span class="chip">250 г</span><span class="chip">500 г</span><span class="chip">1 кг</span></div>
+      <div class="chips vols"><span class="chip">250&nbsp;г · 690&nbsp;₽</span><span class="chip">500&nbsp;г · 1&nbsp;190&nbsp;₽</span><span class="chip">1&nbsp;кг · 2&nbsp;190&nbsp;₽</span></div>
       <label class="btn solid" for="m-order">Познакомиться с Бразилией <span class="arr">→</span></label>
     </div>
     <div class="scene"><div class="sc sc-bra" role="img" aria-label="Упаковка кофе Бразилия на камне"></div></div>
@@ -349,15 +365,14 @@ footer small{flex-basis:100%;opacity:.7;font-size:13px}
 
   <div id="eth" class="screen prod">
     <div class="txt">
-      <span class="eyebrow">Эфиопия ———</span>
-      <h2>Яркость. Ягоды. Цветы.</h2>
+      <h2>Эфиопия: ягоды и цитрус</h2>
       <p>Эфиопия — кофе для тех, кто любит вкус с характером. Яркая кислотность, ягодные ноты и цветочный аромат в каждой чашке.</p>
       <span class="cap">Вкусовой профиль</span>
       <div class="chips"><span class="chip">Ягоды</span><span class="chip">Цитрус</span><span class="chip">Цветы</span></div>
       <span class="cap">Идеально для ———</span>
       <div class="ideal"><span>Фильтр</span><span>Воронка</span><span>Эспрессо</span></div>
       <span class="cap">Фасовка</span>
-      <div class="chips vols"><span class="chip">250 г</span><span class="chip">500 г</span><span class="chip">1 кг</span></div>
+      <div class="chips vols"><span class="chip">250&nbsp;г · 890&nbsp;₽</span><span class="chip">500&nbsp;г · 1&nbsp;590&nbsp;₽</span><span class="chip">1&nbsp;кг · 2&nbsp;890&nbsp;₽</span></div>
       <label class="btn solid" for="m-order">Познакомиться с Эфиопией <span class="arr">→</span></label>
     </div>
     <div class="scene"><div class="sc sc-eth" role="img" aria-label="Упаковка кофе Эфиопия"></div></div>
@@ -365,15 +380,14 @@ footer small{flex-basis:100%;opacity:.7;font-size:13px}
 
   <div id="dark" class="screen prod">
     <div class="txt">
-      <span class="eyebrow">Бразилия · тёмная обжарка ———</span>
-      <h2>Глубина. Какао. Сила.</h2>
+      <h2>Тёмная обжарка: какао</h2>
       <p>Бразилия тёмной обжарки: плотный насыщенный вкус с какао, тёмным шоколадом и специями. Хорошо держит молоко и сироп.</p>
       <span class="cap">Вкусовой профиль</span>
       <div class="chips"><span class="chip">Какао</span><span class="chip">Тёмный шоколад</span><span class="chip">Специи</span></div>
       <span class="cap">Идеально для ———</span>
       <div class="ideal"><span>Эспрессо</span><span>Кофе с молоком</span><span>Моккачино</span></div>
       <span class="cap">Фасовка</span>
-      <div class="chips vols"><span class="chip">250 г</span><span class="chip">500 г</span><span class="chip">1 кг</span></div>
+      <div class="chips vols"><span class="chip">250&nbsp;г · 690&nbsp;₽</span><span class="chip">500&nbsp;г · 1&nbsp;190&nbsp;₽</span><span class="chip">1&nbsp;кг · 2&nbsp;190&nbsp;₽</span></div>
       <label class="btn solid" for="m-order">Познакомиться с тёмной обжаркой <span class="arr">→</span></label>
     </div>
     <div class="scene"><div class="sc sc-bra dark" role="img" aria-label="Упаковка кофе Бразилия тёмной обжарки"></div></div>
@@ -401,8 +415,9 @@ footer small{flex-basis:100%;opacity:.7;font-size:13px}
 
 <!-- Отзывы -->
 <section id="reviews" class="block">
-  <span class="eyebrow">Отзывы · концепт, отзывы придуманные</span>
-  <h2 class="title">Что говорят о кофе</h2>
+  
+  <h2 class="title">Эфиопия без горечи, Бразилия с шоколадом</h2>
+  <p class="demo-note">Отзывы придуманные: это учебный концепт.</p>
   <div class="reviews">
     <div class="rev"><div class="st">★★★★★</div><p>Эфиопия пахнет ягодами ещё из пакета. В чашке яркая, чистая, без горечи.</p><b>Алексей</b><span>Эфиопия</span></div>
     <div class="rev"><div class="st">★★★★★</div><p>Бразилия стала нашим утренним кофе. Мягкая, с шоколадом, отлично идёт с молоком.</p><b>Марина</b><span>Бразилия</span></div>
@@ -410,24 +425,14 @@ footer small{flex-basis:100%;opacity:.7;font-size:13px}
   </div>
 </section>
 
-<!-- Доставка -->
-<section id="delivery" class="block">
-  <span class="eyebrow">Доставка</span>
-  <h2 class="title">Как заказать</h2>
-  <div class="steps">
-    <div class="step"><em>1</em><h3>Выберите кофе</h3><p>Пройдите подбор вкуса или сразу выберите Эфиопию или Бразилию.</p></div>
-    <div class="step"><em>2</em><h3>Выберите фасовку</h3><p>Нажмите «Познакомиться» у нужного кофе и выберите фасовку и количество упаковок.</p></div>
-    <div class="step"><em>3</em><h3>Получите посылку</h3><p>Подтвердим заказ и согласуем доставку. Это учебный концепт: заказы не принимаются.</p></div>
-  </div>
-</section>
-
 <!-- Вопросы -->
 <section id="faq" class="block">
-  <span class="eyebrow">Вопросы</span>
-  <h2 class="title">Частые вопросы</h2>
+  <h2 class="title">Вопросы и ответы</h2>
   <details><summary>Чем отличаются Эфиопия и Бразилия?</summary><p>Эфиопия яркая и фруктовая, с ягодными и цветочными нотами. Бразилия мягкая и сладкая, с шоколадом и орехом.</p></details>
   <details><summary>Что значит «натуральная обработка»?</summary><p>Ягоды кофе сушат целиком, и зерно набирает сладость и фруктовые ноты.</p></details>
   <details><summary>Как лучше заваривать?</summary><p>Эфиопия хорошо раскрывается в фильтре и воронке. Бразилия подходит для эспрессо и капучино.</p></details>
+  <details><summary>Насколько свежий кофе?</summary><p>Обжариваем за 3 дня до отправки и пишем дату обжарки на упаковке. Цифры демонстрационные.</p></details>
+  <details><summary>Сколько стоит доставка?</summary><p>Доставка по России 2-4 дня, бесплатно от 2&nbsp;500&nbsp;₽. Условия демонстрационные.</p></details>
   <details><summary>Это настоящий магазин?</summary><p>Нет. Это учебный концепт сайта: бренд, отзывы и заказ придуманы для примера.</p></details>
 </section>
 
@@ -435,7 +440,7 @@ footer small{flex-basis:100%;opacity:.7;font-size:13px}
   <div class="flogo" role="img" aria-label="NORTH ROAST"></div>
   <ul><li><a href="#coffee">О кофе</a></li><li><a href="#reviews">Отзывы</a></li></ul>
   <ul><li><a href="#delivery">Доставка</a></li><li><a href="#faq">Вопросы</a></li></ul>
-  <small>© NORTH ROAST · Учебный концепт сайта. Бренд, рейтинг и отзывы придуманные.</small>
+  <small>© NORTH ROAST · Учебный концепт сайта. Бренд, цены, рейтинг и отзывы придуманные.</small>
 </footer>
 
 <!-- окна -->
